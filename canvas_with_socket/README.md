@@ -1,5 +1,5 @@
 채팅창 가로 크기 구현 x
--> text-wrap
+-> word-wrap
 
 채팅창 스크롤 구현 x
 -> overflow: auto
@@ -10,7 +10,7 @@
 
 사용자 관리
 -> map 사용으로 성능 개성 가능
--> Object.FromEntries()
+-> Object.fromEntries()
 
 캔버스 밖으로 나가는거 처리해야함
 
