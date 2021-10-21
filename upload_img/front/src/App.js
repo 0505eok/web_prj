@@ -13,7 +13,7 @@ function App() {
       formData.append('uploadFiles', file);
     });
 
-    fetch('/api/img',{
+    fetch('/img',{
       method: 'POST',
       body: 'formData'
     }).then(res => {
