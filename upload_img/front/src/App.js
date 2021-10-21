@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function App() {
-  const [files, setFiles] = useState({});
+  const [files, setFiles] = useState(null);
 
   const makeFileList = (e) => {
     setFiles(e.target.files);
@@ -13,9 +13,10 @@ function App() {
       formData.append('uploadFiles', file);
     });
 
+    console.log(formData);
     fetch('/img',{
       method: 'POST',
-      body: 'formData'
+      body: formData
     }).then(res => {
       res.json();
     }).then(data => {
