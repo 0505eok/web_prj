@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": "23",
+      "firstName": "Bill",
+      "age": 20,
+      "companyId": "1"
+    },
+    {
+      "id": "25",
+      "firstName": "Sam",
+      "age": 24,
+      "companyId": "2"
+    },
+    {
+      "id": "10",
+      "firstName": "Min",
+      "age": 20,
+      "companyId": "2"
+    },
+    {
+      "firstName": "Bam",
+      "age": 30,
+      "id": "3eCgTZi",
+      "companyId": "3"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "description": "iphone"
+    },
+    {
+      "id": "2",
+      "name": "Google",
+      "description": "search"
+    },
+    {
+      "id": "3",
+      "name": "Amazon",
+      "description": "shopping"
+    }
+  ]
+}
