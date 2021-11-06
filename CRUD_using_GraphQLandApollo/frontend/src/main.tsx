@@ -26,6 +26,7 @@ const Main = () => {
               <p>{`글쓴이 : ${post.author}`}</p>
               <p>{`카테고리 : ${post.category}`}</p>
               <p>{`내용 : ${post.contents}`}</p>
+              <button>수정</button>
               <button>삭제</button>
               <br></br>
               <span>--------------------------------------</span>
