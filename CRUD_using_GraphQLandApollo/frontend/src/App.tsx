@@ -1,6 +1,8 @@
 import React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import dotenv from "dotenv";
+
+import Main from "./main";
 dotenv.config();
 
 const client = new ApolloClient({
@@ -11,7 +13,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <div className="App">
-      <ApolloProvider client={client}>hello</ApolloProvider>
+      <ApolloProvider client={client}>
+        <Main></Main>
+      </ApolloProvider>
     </div>
   );
 }
