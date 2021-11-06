@@ -6,6 +6,10 @@ import {
   create_typeDefs,
   create_resolvers,
 } from "./typedefs_and_resolvers/create";
+import {
+  update_typeDefs,
+  update_resolvers,
+} from "./typedefs_and_resolvers/update";
 
 const typeDefs = [
   queries,
@@ -13,7 +17,13 @@ const typeDefs = [
   test_typeDefs,
   read_typeDefs,
   create_typeDefs,
+  update_typeDefs,
 ];
-const resolvers = [test_resolvers, read_resolvers, create_resolvers];
+const resolvers = [
+  test_resolvers,
+  read_resolvers,
+  create_resolvers,
+  update_resolvers,
+];
 
 export { typeDefs, resolvers };

@@ -7,6 +7,14 @@ const typeDefs = gql`
       author: String
       category: String
     ): Create
+
+    update(
+      id: Int
+      title: String
+      contents: String
+      author: String
+      category: String
+    ): Update
   }
 `;
 
