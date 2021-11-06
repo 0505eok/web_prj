@@ -17,19 +17,22 @@ const Main = () => {
   if (loading) return <p>loading</p>;
   if (error) return <p>error</p>;
   return (
-    <ul style={{ listStyle: "none" }}>
-      {data.read.map((post: any) => {
-        return (
-          <li key={post.id}>
-            <p>{`제목 : ${post.title}`}</p>
-            <p>{`글쓴이 : ${post.author}`}</p>
-            <p>{`카테고리 : ${post.category}`}</p>
-            <p>{`내용 : ${post.contents}`}</p>
-            <br></br>
-          </li>
-        );
-      })}
-    </ul>
+    <div>
+      <ul style={{ listStyle: "none" }}>
+        {data.read.map((post: any) => {
+          return (
+            <li key={post.id}>
+              <p>{`제목 : ${post.title}`}</p>
+              <p>{`글쓴이 : ${post.author}`}</p>
+              <p>{`카테고리 : ${post.category}`}</p>
+              <p>{`내용 : ${post.contents}`}</p>
+              <br></br>
+            </li>
+          );
+        })}
+      </ul>
+      <button>글쓰기</button>
+    </div>
   );
 };
 
