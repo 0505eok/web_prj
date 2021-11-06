@@ -18,7 +18,7 @@ const Main = () => {
   if (error) return <p>error</p>;
   return (
     <div>
-      <ul style={{ listStyle: "none" }}>
+      <ul style={{ listStyle: "none", overflow: "auto", maxHeight: "700px" }}>
         {data.read.map((post: any) => {
           return (
             <li key={post.id}>
@@ -26,7 +26,9 @@ const Main = () => {
               <p>{`글쓴이 : ${post.author}`}</p>
               <p>{`카테고리 : ${post.category}`}</p>
               <p>{`내용 : ${post.contents}`}</p>
+              <button>삭제</button>
               <br></br>
+              <span>--------------------------------------</span>
             </li>
           );
         })}
