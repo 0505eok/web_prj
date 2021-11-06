@@ -15,6 +15,8 @@ const typeDefs = gql`
       author: String
       category: String
     ): Update
+
+    delete(id: Int): [Delete]
   }
 `;
 

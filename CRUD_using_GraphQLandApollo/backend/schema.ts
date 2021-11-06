@@ -10,6 +10,10 @@ import {
   update_typeDefs,
   update_resolvers,
 } from "./typedefs_and_resolvers/update";
+import {
+  delete_typeDefs,
+  delete_resolvers,
+} from "./typedefs_and_resolvers/delete";
 
 const typeDefs = [
   queries,
@@ -18,12 +22,14 @@ const typeDefs = [
   read_typeDefs,
   create_typeDefs,
   update_typeDefs,
+  delete_typeDefs,
 ];
 const resolvers = [
   test_resolvers,
   read_resolvers,
   create_resolvers,
   update_resolvers,
+  delete_resolvers,
 ];
 
 export { typeDefs, resolvers };
