@@ -1,5 +1,6 @@
 import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
+import { pool } from "./connection";
 
 const app = express();
 
@@ -27,6 +28,8 @@ server.start().then(() => {
 });
 
 const port = 4000;
-app.listen(port, () => {
+app.listen(port, async () => {
+  const res = await pool.query("select * from post");
+  console.log(res);
   console.log("Express server started on port: " + port);
 });
