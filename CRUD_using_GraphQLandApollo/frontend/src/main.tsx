@@ -47,6 +47,30 @@ const CreatePost = gql`
   }
 `;
 
+const UpdatePost = gql`
+  mutation Mutation(
+    $id: Int
+    $title: String
+    $contents: String
+    $author: String
+    $category: String
+  ) {
+    update(
+      id: $id
+      title: $title
+      contents: $contents
+      author: $author
+      category: $category
+    ) {
+      id
+      title
+      contents
+      author
+      category
+    }
+  }
+`;
+
 const Modal = (props: any) => {
   const [title, setTitle] = useState<string>("");
   const [author, setAuthor] = useState<string>("");
@@ -108,8 +132,12 @@ const Modal = (props: any) => {
         </div>
         <button
           onClick={function () {
-            props.createpost(title, author, category, contents);
-            props.isModal(0);
+            if (!props.id) {
+              props.createpost(title, author, category, contents);
+            } else {
+              props.updatepost(props.id, title, author, category, contents);
+            }
+            props.isModal(-1);
           }}
         >
           제출
@@ -121,7 +149,7 @@ const Modal = (props: any) => {
 
 const Main = () => {
   const { loading, error, data, refetch } = useQuery(readAll);
-  const [modal, setModal] = useState<number>(0);
+  const [modal, setModal] = useState<number>(-1);
 
   const [deletePost] = useMutation(DeletePost, {
     onCompleted: (data) => {
@@ -137,6 +165,13 @@ const Main = () => {
     },
   });
 
+  const [updatePost] = useMutation(UpdatePost, {
+    onCompleted: (data) => {
+      refetch();
+      alert("게시물이 수정되었습니다.");
+    },
+  });
+
   if (loading) return <p>loading</p>;
   if (error) return <p>error</p>;
 
@@ -145,10 +180,10 @@ const Main = () => {
   };
 
   const Create: any = (
-    title: any,
-    author: any,
-    category: any,
-    contents: any
+    title: string,
+    author: string,
+    category: string,
+    contents: string
   ) => {
     createPost({
       variables: {
@@ -160,7 +195,25 @@ const Main = () => {
     });
   };
 
-  if (modal === 0) {
+  const Update: any = (
+    id: number,
+    title: string,
+    author: string,
+    category: string,
+    contents: string
+  ) => {
+    updatePost({
+      variables: {
+        id: id,
+        title: title,
+        author: author,
+        category: category,
+        contents: contents,
+      },
+    });
+  };
+
+  if (modal === -1) {
     return (
       <div>
         <ul style={{ listStyle: "none", overflow: "auto", maxHeight: "700px" }}>
@@ -171,7 +224,13 @@ const Main = () => {
                 <p>{`글쓴이 : ${post.author}`}</p>
                 <p>{`카테고리 : ${post.category}`}</p>
                 <p>{`내용 : ${post.contents}`}</p>
-                <button>수정</button>
+                <button
+                  onClick={function () {
+                    setModal(post.id);
+                  }}
+                >
+                  수정
+                </button>
                 <button
                   onClick={function () {
                     Delete(post.id);
@@ -187,17 +246,23 @@ const Main = () => {
         </ul>
         <button
           onClick={function () {
-            setModal(1);
+            setModal(-2);
           }}
         >
           글쓰기
         </button>
       </div>
     );
-  } else {
+  } else if (modal === -2) {
     return (
       <div>
         <Modal createpost={Create} isModal={setModal}></Modal>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Modal updatepost={Update} isModal={setModal} id={modal}></Modal>
       </div>
     );
   }
